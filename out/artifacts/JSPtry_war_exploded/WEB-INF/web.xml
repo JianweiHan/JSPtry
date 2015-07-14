@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+
+    <filter>
+        <filter-name>jhello</filter-name>
+        <filter-class>org.glassfish.jersey.servlet.ServletContainer</filter-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>server</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jersey.config.server.mvc.templateBasePath.jsp</param-name>
+            <param-value>/WEB-INF/jsp</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jersey.config.server.provider.classnames</param-name>
+            <param-value>org.glassfish.jersey.server.mvc.jsp.JspMvcFeature</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jersey.config.server.tracing</param-name>
+            <param-value>ALL</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jersey.config.servlet.filter.staticContentRegex</param-name>
+            <param-value>(/index.jsp)|(/(content|(WEB-INF/jsp|css|images))/.*)</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>jhello</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+</web-app>
